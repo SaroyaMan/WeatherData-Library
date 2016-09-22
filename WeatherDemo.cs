@@ -10,7 +10,7 @@ using Weather;
  * @last update: 16/09/2016.
  * @authors: Yoav Saroya - 304835887 & Sharon Yosef - 305345118.
  */
-namespace TEST
+namespace Test
 {
 	internal class WeatherDemo
 	{
