@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Weather</name>
+    </assembly>
+    <members>
+        <member name="T:Weather.ApixuDataService">
+            <summary>
+            Represents a REStful web service of http://www.apixu.com and it implements
+            the inteface IWeatherDataService - means it responsible to create a WeatherData object with
+            all data according to this web service. This class implements the singleton design pattern
+            </summary>
+        </member>
+        <member name="F:Weather.ApixuDataService.instance">
+            <summary>
+            A static reference to the single object (a part of singleton design pattern)
+            </summary>
+        </member>
+        <member name="M:Weather.ApixuDataService.#ctor">
+            <summary>
+            A private constructor to ensure no one can access it.
+            </summary>
+        </member>
+        <member name="M:Weather.ApixuDataService.GetInstance">
+            <summary>
+            Retrieving the singleton instance (lazy initialization).
+            </summary>
+            <returns>The single object of ApixuDataService</returns>
+        </member>
+        <member name="M:Weather.ApixuDataService.GetWeatherData(Weather.Location)">
+            <summary>
+            Responsible to complete the url link and calls to method who parse the Json to a WeatherData
+            object with all details.
+            </summary>
+            <param name="location"></param>
+            <exception cref="T:System.NullReferenceException">Thrown when sent null to method.</exception>
+            <exception cref="T:Weather.WeatherDataServiceException">
+            Thrown when method fail to initialize Location and Weatherdata from Json.
+            </exception>
+            <returns>WeatherData object with all relevant information</returns>
+        </member>
+        <member name="M:Weather.ApixuDataService.ParseJsonToWeatherData(Weather.Location)">
+            <summary>
+            Responsible to parse the Json and translates it to Location and WeatherData objects.
+            It also initialize the location object with all relevant details.
+            </summary>
+            <param name="location"></param>
+            <exception cref="T:Weather.WeatherDataServiceException">
+            Thrown when method fail to initialize Location and Weatherdata from Json.</exception>
+            <returns>WeatherData object with all relevant information</returns>
+        </member>
+        <member name="T:Weather.IWeatherDataService">
+            <summary>
+            Represents a weather REStful web service. each class that implements it must
+            create WeatherData object with his own way.
+            </summary>
+        </member>
+        <member name="T:Weather.Location">
+            <summary>
+            Represents the location data of the WeatherData object is based on.
+            </summary>
+        </member>
+        <member name="P:Weather.Location.IsInitialized">
+            <summary>
+            IsInitialized checks if location is already defined.
+            It made to make sure that each Location object belongs to exactly 1 WeatherData object
+            </summary>
+        </member>
+        <member name="M:Weather.Location.#ctor(System.String)">
+            <summary>
+            A humble constructor just to make sure we create the location object with a city searched string
+            </summary>
+            <param name="searchCityTxt"><see cref="P:Weather.Location.City"/></param>
+        </member>
+        <member name="M:Weather.Location.#ctor(System.Double,System.Double)">
+            <summary>
+            A humble constructor just to make sure we create the location object with a latitude and longitude searched string
+            </summary>
+            <param name="searchLatitude"><see cref="P:Weather.Location.Latitude"/></param>
+            <param name="searchLongitude"><see cref="P:Weather.Location.Longitude"/></param>
+        </member>
+        <member name="M:Weather.Location.Initialize(System.String,System.Double,System.Double,System.String)">
+            <summary>Initializing all the properties of the location.</summary>
+            <param name="city"><see cref="P:Weather.Location.City"/></param>
+            <param name="longitude"><see cref="P:Weather.Location.Longitude"/></param>
+            <param name="latitude"><see cref="P:Weather.Location.Latitude"/></param>
+            <param name="country"><see cref="P:Weather.Location.Country"/></param>
+        </member>
+        <member name="T:Weather.OpenWeatherMapDataService">
+            <summary>
+            Represents a REStful web service of http://www.openweathermap.org and it implements
+            the inteface IWeatherDataService - means it responsible to create a WeatherData object with
+            all data according to this web service. This class implements the singleton design pattern
+            </summary>
+        </member>
+        <member name="F:Weather.OpenWeatherMapDataService.instance">
+            <summary>
+            A static reference to the single object (a part of singleton design pattern)
+            </summary>
+        </member>
+        <member name="M:Weather.OpenWeatherMapDataService.#ctor">
+            <summary>
+            A private constructor to ensure no one can access it.
+            </summary>
+        </member>
+        <member name="M:Weather.OpenWeatherMapDataService.GetInstance">
+            <summary>
+            Retrieving the singleton instance (lazy initialization).
+            </summary>
+            <returns>The single object of OpenWeatherMapDataService</returns>
+        </member>
+        <member name="M:Weather.OpenWeatherMapDataService.GetWeatherData(Weather.Location)">
+            <summary>
+            Responsible to complete the url link and calls to method who parse the XML to a WeatherData
+            object with all details.
+            </summary>
+            <param name="location"></param>
+            <exception cref="T:System.NullReferenceException">Thrown when sent null to method.</exception>
+            <exception cref="T:Weather.WeatherDataServiceException">
+            Thrown when method fail to initialize Location and Weatherdata from XML.
+            </exception>
+            <returns>WeatherData object with all relevant information</returns>
+        </member>
+        <member name="M:Weather.OpenWeatherMapDataService.ParseXmlToWeatherData(Weather.Location)">
+            <summary>
+            Responsible to parse the XML and translates it to Location and WeatherData objects.
+            It also initialize the location object with all relevant details.
+            </summary>
+            <param name="location"></param>
+            <exception cref="T:Weather.WeatherDataServiceException">
+            Thrown when method fail to initialize Location and Weatherdata from XML.</exception>
+            <returns>WeatherData object with all relevant information</returns>
+        </member>
+        <member name="T:Weather.WeatherData">
+            <summary>
+            Represents the weather of the selected location.
+            All fields in this class are defined as read-only. once WeatherData is created by a specific location,
+            you cannot change it's state.
+            </summary>
+        </member>
+        <member name="F:Weather.WeatherData.Location">
+            <summary>
+            Represents the location of the WeatherData is set by it.
+            once location is assigned - you cannot change it (location.IsInitialized helps to protect it)
+            </summary>
+        </member>
+        <member name="F:Weather.WeatherData.WindInfo">
+            <summary>
+            Represents the Wind Data of the weather.
+            </summary>
+        </member>
+        <member name="M:Weather.WeatherData.#ctor(Weather.Location,System.Double,System.Double,System.Double,System.String,System.String,System.Double,System.String,System.String)">
+            <summary>Record Constructor</summary>
+            <param name="location"><see cref="F:Weather.WeatherData.Location"/></param>
+            <param name="temperature"><see cref="F:Weather.WeatherData.Temperature"/></param>
+            <param name="humidity"><see cref="F:Weather.WeatherData.Humidity"/></param>
+            <param name="pressure"><see cref="F:Weather.WeatherData.Pressure"/></param>
+            <param name="clouds"><see cref="F:Weather.WeatherData.Clouds"/></param>
+            <param name="lastUpdated"><see cref="F:Weather.WeatherData.LastUpdated"/></param>
+            <param name="windSpeed"><see cref="F:Weather.WeatherData.WindInfo"/></param>
+            <param name="windDescription"><see cref="F:Weather.WeatherData.WindInfo"/></param>
+            <param name="windDirection"><see cref="F:Weather.WeatherData.WindInfo"/></param>
+        </member>
+        <member name="T:Weather.WeatherData.Wind">
+            <summary>Represents the Wind of the WeatherData</summary>
+        </member>
+        <member name="M:Weather.WeatherData.Wind.#ctor(System.Double,System.String,System.String)">
+            <summary>Record Constructor</summary>
+            <param name="speed"><see cref="F:Weather.WeatherData.Wind.Speed"/></param>
+            <param name="description"><see cref="F:Weather.WeatherData.Wind.Description"/></param>
+            <param name="direction"><see cref="F:Weather.WeatherData.Wind.Direction"/></param>
+        </member>
+        <member name="T:Weather.WeatherDataServiceException">
+            <summary>
+            Represents an exception that caused by using the library as a result of bad connection
+            to one of the web services, or failing to parse the data, and etc.
+            </summary>
+        </member>
+        <member name="T:Weather.WeatherDataServiceFactory">
+            <summary>
+            Represents the factory who responsible to create a weather REStful web services objects.
+            Each const variable represents one weather web service.
+            This class implements the factory method design pattern.
+            </summary>
+        </member>
+        <member name="F:Weather.WeatherDataServiceFactory.OPEN_WEATHER_MAP">
+            <summary>
+            Represents the weather REStful web service http://www.openweathermap.org/
+            </summary>
+        </member>
+        <member name="F:Weather.WeatherDataServiceFactory.APIXU">
+            <summary>
+            Represents the weather REStful web service http://www.apixu.com/
+            </summary>
+        </member>
+        <member name="M:Weather.WeatherDataServiceFactory.GetWeatherDataService(System.Int32)">
+            <summary>
+            Checks what weather REStful web service the user sent and returns the requested service.
+            </summary>
+            <param name="weatherDataService"></param>
+            <returns>An object represents a weather REStful web service</returns>
+        </member>
+    </members>
+</doc>
