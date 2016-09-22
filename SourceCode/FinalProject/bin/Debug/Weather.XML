@@ -58,7 +58,6 @@
         <member name="T:Weather.Location">
             <summary>
             Represents the location data of the WeatherData object is based on.
-            This class implements the prototype design pattern by implements the ICloneable interface.
             </summary>
         </member>
         <member name="P:Weather.Location.IsInitialized">
