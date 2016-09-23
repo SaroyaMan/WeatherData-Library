@@ -1,5 +1,5 @@
 # WeatherData-CSharp
-[Github page<br>](https://saroyaman.github.io/WeatherData-CSharp/)
+[Github page<br>](https://saroyaman.github.io/WeatherData-CSharp/) {:target="_blank"}
 <a href="https://saroyaman.github.io/WeatherData-CSharp/" target="_blank">Github Page</a>
 This project is a library that gives you a Weather data from REStful web services.
 
