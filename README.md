@@ -7,7 +7,7 @@ This library made to developers who wants to get easly the current Weather in di
 ### How-to install
 1. Download and extract the WeatherLibrary.zip from here.
 2. On a project you are willing to use the library - right click on project and then Add -> Reference.
-3. Browse the 2 DLL files from the extracted zip.
+3. Browse all DLL files from the extracted zip.
 4. Add the directive 'Weather' (using Weather;) inside your source file.
 5. That's it, you can now use the library!
 
