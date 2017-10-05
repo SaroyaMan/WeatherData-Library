@@ -16,4 +16,4 @@ This library made to developers who wants to get easly the current Weather in di
 For any questions and notes - you can always contact with Yoav Saroya (@SaroyaMan) - stankovic100@gmail.com
 * **category:** utility library.
 * **last update:** 25/09/2016.
-* **authors:** Yoav Saroya - 304835887 & Sharon Yosef - 305345118.
+* **authors:** Yoav Saroya - 304835887
